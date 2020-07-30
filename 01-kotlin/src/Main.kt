@@ -1,233 +1,281 @@
-import  java.util. *
-import  java.util.function.Consumer
+//empezando
+import java.util.*
+import java.util.function.Consumer
 
-fun  main ( args :  Array < String > ) {
-    imprimir ( " Hola " )
+fun main(args: Array<String>) {
+    print("Hola")
     // Ejemplo java:
     // Int edad = 31;
-    // mutables
-    var edadProfesor =  31    // No especificamos el tipo de dato
+    // Mutables
+    var edadProfesor = 31   // No especificamos el tipo de dato
     // ; No es necesario
-    // Pato escribiendo
+    // Duck Typing
     // var edadCachorro; X -> necesitamos el tipo de datos
-    var edadCachorro :  Int
-    edadCachorro =  3
-    edadProfesor =  32
-    edadCachorro =  4
+    var edadCachorro: Int
+    edadCachorro = 3
+    edadProfesor = 32
+    edadCachorro = 4
     // Inmutables
-    val numeroCuenta =  123456  // NO SE PUEDEN REASIGNAR
+    val numeroCuenta = 123456 // NO SE PUEDEN REASIGNAR
     // numeroCuenta = 123
 
-    // Variables de tipos
-    val nombreProfesor :  String  =  " Vicente Adrian "
-    val sueldo :  Doble  =  12.20
-    val apellidosProfesor :  Char  = 'a'
-    val fechaNacimiento =  Date () // new Date ()
+    // Tipos variables
+    val nombreProfesor: String = "Vicente Adrian"
+    val sueldo: Double = 12.20
+    val apellidosProfesor: Char = 'a'
+    val fechaNacimiento = Date() // new Date()
 
-    if (sueldo ==  12.20 ) {
+    if (sueldo == 12.20) {
 
-    } más {
+    } else {
 
     }
 
-    cuando (sueldo) {
-        12.20  - >  println ( " Sueldo normal " )
-        - 12.20  - >  println ( " Sueldo negativo " )
-        de lo contrario  - >  println ( " No se reconoce el sueldo " )
+    when (sueldo) {
+        12.20 -> println("Sueldo normal")
+        -12.20 -> println("Sueldo negativo")
+        else -> println("No se reconoce el sueldo")
     }
 
-    val esSueldoMayorAlEstablecido =  if (sueldo ==  12.20 ) verdadero  más  falso
-    // EXPRESION? X: Y
-    // calcularSueldo (1000.00, 14.00)
-    calcularSueldo ( 1000.00 , 14.00 )
-    calcularSueldo (
-            tasa =  16.00 ,
-            sueldo =  800.00
-    ) // Parámetros con nombre
-    calcularSueldo ( 700.00 )
-    calcularSueldo (sueldo =  650.00 )
+    val esSueldoMayorAlEstablecido = if (sueldo == 12.20) true else false
+    // EXPRESION ? X : Y
+    // calcularSueldo(1000.00, 14.00)
+    calcularSueldo(1000.00, 14.00)
+    calcularSueldo(
+            tasa = 16.00,
+            sueldo = 800.00
+    ) // Named Parameters
+    calcularSueldo(700.00)
+    calcularSueldo(sueldo = 650.00)
 
-    val arregloConstante :  Array < Int >  = arrayOf ( 1 , 2 , 3 )
-    val arregloCumpleanos :  ArrayList < Int >  = arrayListOf ( 30 , 31 , 22 , 23 , 20 )
-    imprimir (arregloCumpleanos)
-    arregloCumpleanos.add ( 24 )
-    imprimir (arregloCumpleanos)
-    // arregloCumpleanos.remove (30)
-    arregloCumpleanos.remove ( 30 )
-    imprimir (arregloCumpleanos)
+    val arregloConstante: Array<Int> = arrayOf(1, 2, 3)
+    val arregloCumpleanos: ArrayList<Int> = arrayListOf(30, 31, 22, 23, 20)
+    print(arregloCumpleanos)
+    arregloCumpleanos.add(24)
+    print(arregloCumpleanos)
+    // arregloCumpleanos.remove(30)
+    arregloCumpleanos.remove(30)
+    print(arregloCumpleanos)
 
 
     arregloCumpleanos
-            .forEach {valorIteracion :  Int  - >
-                println ( " Valor iteracion: "  + valorIteracion)
+            .forEach { valorIteracion: Int ->
+                println("Valor iteracion: " + valorIteracion)
             }
     arregloCumpleanos
-            .para cada(
-            {valorIteracion :  Int  - >
-                println ( " Valor iteracion: "  + valorIteracion)
-            }
+            .forEach(
+                    { valorIteracion: Int ->
+                        println("Valor iteracion: " + valorIteracion)
+                    }
             )
 
     // Operadores -> TODOS LOS LENGUAJES
-    // ForEach no devuelve nada -> Unidad
+    // ForEach no devuelve nada -> Unit
     arregloCumpleanos
-            .forEach {iteracion :  Int  - >
-                println ( " Valor de la iteracion "  + iteracion)
-                println ( " Valor con -1 = $ {iteracion *  - 1 }  " )
+            .forEach { iteracion: Int ->
+                println("Valor de la iteracion " + iteracion)
+                println("Valor con -1 = ${iteracion * -1} ")
             }
 
     val respuestaArregloForEach = arregloCumpleanos
-            .forEachIndexed {index :  Int , iteracion :  Int  - >
-                println ( " Valor de la iteracion "  + iteracion)
+            .forEachIndexed { index: Int, iteracion: Int ->
+                println("Valor de la iteracion " + iteracion)
             }
-    println (respuestaArregloForEach) // Unidad vacía
+    println(respuestaArregloForEach) // Void Unit
 
-    // MAPA -> Muta el arreglo (Cambia el arreglo)
-    // 1) Enviemos el nuevo valor de la iteración
+    // MAP -> Muta el arreglo (Cambia el arreglo)
+    // 1) Enviemos el nuevo valor de la iteracion
     // 2) Nos devuelve es un NUEVO ARREGLO con los valores modificados
     val respuestaMap = arregloCumpleanos
-            .map {iterador :  Int  - >
-                iterador *  - 1
+            .map { iterador: Int ->
+                iterador * -1
             }
     val respuestaMapDos = arregloCumpleanos
-            .map {iterador :  Int  - >
-                val nuevoValor = iterador *  - 1
-                val otroValor = nuevoValor *  2
-                return @map  Date ()
+            .map { iterador: Int ->
+                val nuevoValor = iterador * -1
+                val otroValor = nuevoValor * 2
+                return@map Date()
             }
-    println (respuestaMap)
-    println (respuestaMapDos)
-    println (arregloCumpleanos)
+    println(respuestaMap)
+    println(respuestaMapDos)
+    println(arregloCumpleanos)
 
-    // Filtro -> FILTRAR EL ARREGLO
-    // 1) Devolver una expresión (VERDADERO o FALSO)
+    // Filter -> FILTRAR EL ARREGLO
+    // 1) Devolver una expresion (TRUE o FALSE)
     // 2) Nuevo arreglo que cumpla esa expresion
     val respuestaFilter = arregloCumpleanos
-            .filter {iteracion :  Int  - >
-                val esMayorA23 = iteracion >  23
-                volver @filter esMayorA23
+            .filter { iteracion: Int ->
+                val esMayorA23 = iteracion > 23
+                return@filter esMayorA23
             }
-    arregloCumpleanos.filter {it >  23 }
-    println (respuestaFilter)
-    println (arregloCumpleanos)
+    arregloCumpleanos.filter { it > 23 }
+    println(respuestaFilter)
+    println(arregloCumpleanos)
 
-    // Cualquiera -> O (Algunos)
-    // Todos -> Y (Todos)
-    // Y -> VERDADERO, Todo lo demas falso
-    // O -> TODO es falso, lo demas era verdadero
-    // 1) Devolver una expresión (VERDADERO o FALSO)
+    // Any -> OR (Some)
+    // All -> AND (Every)
+    // AND -> TRUE, Todo lo demas falso
+    // OR -> TODO es falso, lo demas era verdadero
+    // 1) Devolver una expresion (TRUE o FALSE)
     // 2) Devuelve un Booleano
     // (30, 31, 22, 23, 20)
     val respuestaAny = arregloCumpleanos
-            .any {iterador :  Int  - >
-                return @ cualquier iterador <  25
+            .any { iterador: Int ->
+                return@any iterador < 25
             }
-    println (respuestaAny)
+    println(respuestaAny)
 
     val respuestaAll = arregloCumpleanos
-            .all {iterador :  Int  - >
-                return @todos iterador >  18
+            .all { iterador: Int ->
+                return@all iterador > 18
             }
-    println (respuestaAll)
+    println(respuestaAll)
 
 
-    // Reducir
+    // Reduce
     // 1) Devuelve el acumulado
-    // 2) En que valor comienza
+    // 2) En que valor empieza
     // Devuelve un numero
     // (30, 31, 22, 23, 20)
     // ("a", "b", "c", "d")
     // "abcd"
     val respuestaReduce = arregloCumpleanos // Acumulador 0
-            .reduce ({acumulador, iteracion - >
-                return @reduce acumulador + iteracion
+            .reduce({ acumulador, iteracion ->
+                return@reduce acumulador + iteracion
             })
-    println (respuestaReduce)
+    println(respuestaReduce)
 
     val respuestaFold = arregloCumpleanos
-            .doblez(
-                    100 ,
-                    {acumulador, iteracion - >
-                        return @fold acumulador - iteracion
+            .fold(
+                    100,
+                    { acumulador, iteracion ->
+                        return@fold acumulador - iteracion
                     }
             )
     // arregloCumpleanos.reduceRigth
     // arregloCumpleanos.foldRight
-    println (respuestaFold)
+    println(respuestaFold)
     // forEach -> nada
-    // mapa -> Arreglo
-    // filtro -> Arreglo
-    // todos -> Booleano
-    // cualquiera -> Booleano
-    // reducir -> Valor
-    // doblar -> Valor
+    // map -> Arreglo
+    // filter -> Arreglo
+    // all -> Booleano
+    // any -> Booleano
+    // reduce -> Valor
+    // fold -> Valor
 
     // Reducir el daño en 20%
     // 18 <
     // (30, 31, 22, 23, 20)
     val vidaActual = arregloCumpleanos
-            .map {it *  0.8 } // (24, 24.8, 17.7, 18.4, 16)
-            .filter {it >  18 } // (24, 24.8, 18.4)
-            .fold ( 100.00 , {acc, d - > acc - d})
-            . también { println (it)}
+            .map { it * 0.8 } // (24, 24.8, 17.7, 18.4, 16)
+            .filter { it > 18 } // (24, 24.8, 18.4)
+            .fold(100.00, { acc, d -> acc - d })
+            .also { println(it) }
+
+    val nuevoNumero = SumaDosNumerosDos (1,1)
+    val nuevoNumeroDos = SumaDosNumerosDos (1,null)
+    val nuevoNumeroDos = SumaDosNumerosDos (null,1)
+    val nuevoNumeroDos = SumaDosNumerosDos (null,null)
+
 
 }
 
-divertido  calcularSueldo (
-sueldo :  Doble , // Requeridos!
-tasa :  Doble  =  12.00 , // Tiene valor defecto
-calculoEspecial :  Int?  =  nulo  // Pueden ser nulos
-) :  Doble {
-    if (calculoEspecial ! =  null ) {
-        volver sueldo * tasa * calculoEspecial
-    } más {
-        volver sueldo * tasa
+fun calcularSueldo(
+        sueldo: Double, // Requeridos!
+        tasa: Double = 12.00, // Tiene valor defecto
+        calculoEspecial: Int? = null // Pueden ser nulos
+): Double {
+    if (calculoEspecial != null) {
+        return sueldo * tasa * calculoEspecial
+    } else {
+        return sueldo * tasa
     }
 }
 
 
-divertido  imprimirMensaje () { // Unit = Void
-    println ( " " )
+fun imprimirMensaje() { // Unit = Void
+    println("")
 }
 
 
 // Clases Abstractas
 
-clase  abstracta NumerosJava {   // val nuevosNumeros = Numeros (1,2)
-    protegido  val numeroUno :  Int
-    privado  val numeroDos :  Int
+abstract class NumerosJava {  // val nuevosNumeros = Numeros(1,2)
+    protected val numeroUno: Int
+    private val numeroDos: Int
 
-    constructor ( uno :  Int , dos :  Int ) {
+    constructor(uno: Int, dos: Int) {
         numeroUno = uno
         numeroDos = dos
     }
 }
 
-clase  abstracta Numeros ( // val nuevosNumeros = Numeros (1,2)
-val  numeroUno protegido :  Int ,
-protegido  val  numeroDos :  Int
+abstract class Numeros( // val nuevosNumeros = Numeros(1,2)
+        protected val numeroUno: Int,
+        protected val numeroDos: Int
 ) {
 }
 
-clase  Suma (
-uno :  Int , // Parámetro
-dos :  Int  // Parametro
-) :  Numeros (uno, dos) {
-    fun  sumar () : Int {
+class Suma(
+        uno: Int, // Parametro
+        dos: Int // Parametro
+) : Numeros(uno, dos) {
+    fun sumar():Int{
         // this.uno o this.dos NO ESTAN DISPONIBLES
-        devuelve  este .numeroUno +  este .numeroDos
+        return this.numeroUno + this.numeroDos
     }
 }
 
-clase  SumaDos (
-public  var  uno :  Int , // Propiedades
-public  var  dos :  Int  // Propiedades
-) :  Numeros (uno, dos) {
-    fun  sumar () : Int {
-        este .uno
-        esto .dos
-        devuelve  este .numeroUno +  este .numeroDos
+class SumaDos(
+        public var uno: Int, // Propiedades
+        public var dos: Int // Propiedades
+) : Numeros(uno, dos) {
+    fun sumar():Int{
+        this.uno
+        this.dos
+        return this.numeroUno + this.numeroDos
     }
 }
+
+class SumaDosNumerosDos(
+        uno: Int,
+        dos: Int
+) : Numeros(uno, dos) {
+
+    init {
+        println("Hola Init")
+    }
+    constructor (uno: Int?, dos: Int) this(
+            if(uno == null) 0 else uno,
+            dos
+    ) {
+        print("Hola 1")
+    }
+    constructor(uno: Int, dos: Int){
+        val numDos:Int = if (dos == null) 0 else dos
+        this.numeroUno = uno
+        this.numeroDos = numDos
+        print("Hola 2")
+    }
+    constructor(uno: Int?, dos: Int?){
+        val numUno:Int= if (uno == null) 0 else uno
+        val numDos:Int= if (dos == null) 0 else dos
+        this.numeroUno = numUno
+        this.numeroDos = numDos
+        print("Hola 3")
+    }
+    companion object{
+        val arregloNumerosInicial = arrayListOf(1,2,3,4)
+        val arregloNumeros = arrayListOf(1,2,3,4)
+
+        fun arreglarNumero (nuevoNumero:Int){
+            this.arregloNumeros.add(nuevoNumero)
+        }
+        fun eliminarNumero (posicionNumeros: Int){
+            this.arregloNumeros.removeAt(posicionNumeros)
+        }
+    }
+}
+
 
 
