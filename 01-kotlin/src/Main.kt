@@ -112,17 +112,37 @@ fun main(args: Array<String>) {
                iteracion * -1
             }
 
+    //peudo tranformar en un nuevo arreglo que yo necesite
     val respuestaMapDos = arregloCupleanos
             .map { iteracion: Int ->
                 val nuevoValor = iteracion * -1
                 val otroValor = nuevoValor * 2
                 return@map otroValor
-
             }
     println(respuestaMap)
     println(respuestaMapDos)
     println(arregloCupleanos)
 
+    //quiero que solo me devuelva los valores mayores a 23
+
+    //FILTER
+
+    //VAMOS A FILTRAR EL ARREGLO
+    //Nos crea un nuevo arreglo, en programacion funcional no modifa original
+    // aqui devolvemos una expresion, es decir devolvemos verdadero o falso
+    //devuleve un arrelo que cumple la expresion
+
+    val respuestaFilter = arregloCupleanos
+            .filter {iteracion: Int ->
+                val mayor23 = iteracion > 23
+                return@filter mayor23
+            }
+
+    arregloCupleanos
+            .filter{
+                iteracion:Int -> iteracion > 23
+            }
+    println(respuestaFilter)
 }//parámetros nombrados, en el orden que deseamos
 fun calcularSueldo(
         sueldo: Double, //requeridos
