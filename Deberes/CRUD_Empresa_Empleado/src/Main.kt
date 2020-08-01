@@ -86,12 +86,12 @@ fun menuEmpresa(empresas: ArrayList<Empresas>, empleados: ArrayList<Empleado>): 
     var estado = true
     var texto: String
     texto = "********************************************" + "\n"
-    texto += "-       MENÚ EMPRESAS       -" + "\n"
+    texto += "-       MENÚ EMPRESAS        -" + "\n"
     texto += "- 1. Ingresar Empresa (C)    -" + "\n"
-    texto += "- 2. Mostrar Empresa (R) -" + "\n"
-    texto += "- 3. Modificar Empresa (U)          -" + "\n"
-    texto += "- 4. Eliminar Empresa  (D)         -" + "\n"
-    texto += "- 5. Regresar         -" + "\n"
+    texto += "- 2. Mostrar Empresa (R)     -" + "\n"
+    texto += "- 3. Modificar Empresa (U)   -" + "\n"
+    texto += "- 4. Eliminar Empresa  (D)   -" + "\n"
+    texto += "- 5. Regresar                -" + "\n"
     texto += "********************************************" + "\n"
     println(texto)
     var opcion: Int
@@ -99,12 +99,12 @@ fun menuEmpresa(empresas: ArrayList<Empresas>, empleados: ArrayList<Empleado>): 
         try {
             opcion = readLine().toString().toInt()
             if (opcion > 5 || opcion < 1) {
-                print("ingrese un valor correcto")
+                print("ingrese un valor entre 1 a 5")
             } else {
                 break
             }
         } catch (e: NumberFormatException) {
-            print("Ingrese un valor valido")
+            print("Ingrese un valor entero ")
         }
     }
     when (opcion) {
@@ -120,7 +120,7 @@ fun menuEmpresa(empresas: ArrayList<Empresas>, empleados: ArrayList<Empleado>): 
 fun crearEmpresa(empresas : ArrayList<Empresas>){
     print("Ingrese nombre de la Empresa: ")
     val nombre = readLine().toString()
-    print("Ingrese Dirección de la Empresa: ")
+    print("Ingrese el salario del Empleado: ")
     val direccion = readLine().toString()
     print("Ingrese teléfono de la Empresa: ")
     val telefono = readLine().toString().toInt()
@@ -137,5 +137,63 @@ fun modificarEmpresa(){
 
 }
 fun eliminarEmpresa (){
+
+}
+
+fun menuEmpleado(empresas: ArrayList<Empresas>, empleados: ArrayList<Empleado>): Boolean {
+    var estado = true
+    var texto: String
+    texto = "********************************************" + "\n"
+    texto += "-       MENÚ EMPLEADO       -" + "\n"
+    texto += "- 1. Ingresar Empleado (C)  -" + "\n"
+    texto += "- 2. Mostrar Empleado (R)   -" + "\n"
+    texto += "- 3. Modificar Empleado (U) -" + "\n"
+    texto += "- 4. Eliminar Empleado (D)  -" + "\n"
+    texto += "- 5. Regresar               -" + "\n"
+    texto += "********************************************" + "\n"
+    println(texto)
+    var opcion: Int
+    while (true) {
+        try {
+            opcion = readLine().toString().toInt()
+            if (opcion > 5 || opcion < 1) {
+                print("Ingrese un valor enre 1 a 5")
+            } else {
+                break
+            }
+        } catch (e: NumberFormatException) {
+            print("Ingrese un valor valor entero")
+        }
+    }
+    when (opcion) {
+        1 -> crearEmpleado(empleados)
+        2 -> mostrarEmpleado()
+        3 -> modificarEmpleado()
+        4 -> eliminarEmpleado()
+        5 -> estado = false
+    }
+    return estado
+}
+fun crearEmpleado(empleados: ArrayList<Empleado>){
+    print("Ingrese nombre del Empleado: ")
+    val nombre = readLine().toString()
+    print("Ingrese el Salario del Empleado: ")
+    val salario = readLine().toString().toFloat()
+    print("Ingrese Edad del Empleado: ")
+    val edad = readLine().toString().toInt()
+    print("El empleado está en nomina? (true o false) ")
+    val estado = readLine()!!.toBoolean()
+    print("Ingrese Departamento del Empleado: ")
+    val departamento = readLine().toString()
+
+    empleados.add( Empleado(nombre,salario,edad,estado,departamento))
+}
+fun mostrarEmpleado(){
+
+}
+fun modificarEmpleado(){
+
+}
+fun eliminarEmpleado (){
 
 }
