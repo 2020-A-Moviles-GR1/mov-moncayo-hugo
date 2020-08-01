@@ -220,7 +220,24 @@ fun imprimirMensaje():Unit{ //Unit = Void, también no se debe especificar nada
 
 
 //como incializar variable
+//Clases abstractas
+//no se necesita poner new para instancias una clase
+abstract class Numeros ( //variable nuevos numeros = Numeros
+        val numerUno:Int,
+        val numeroDos:Int
+){
+}
 
+//heredar de una clase a otra
 
+class Suma (
+    private val uno:Int,
+    private val dos:Int
+):Numeros(uno,dos){
+     fun sumar():Int
+    {
+        return this.numerUno +this.numeroDos
+    }
+}
 
 
