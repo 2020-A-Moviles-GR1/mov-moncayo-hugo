@@ -143,6 +143,51 @@ fun main(args: Array<String>) {
                 iteracion:Int -> iteracion > 23
             }
     println(respuestaFilter)
+
+    //Any -> filtrar el arreglo OR (some)
+    //ALL -> AND (every)
+    //AND. TRUE, TODO LO DEMÁS ES FALSO
+    //OR SOLO SI TODO ES FALSO ES FALSO
+    //devolver una expresion (true o false)
+    //devuleve un booleano
+    //
+    val respuestaAny: Boolean = arregloCupleanos.any{
+        interador:Int->
+        //existe al menos uno que sea menor a 25 en nuestro arreglo
+        return@any interador < 25
+    }
+    println(respuestaAny)
+
+    val respuestaSome: Boolean = arregloCupleanos.all{
+        interador:Int->
+
+        return@all interador < 25
+    }
+    println(respuestaSome)
+
+    //reduce
+    //1) devuelve el acumulado
+    //2) en que valor empieza.
+    // siempre el acumulador empieza en vacío,
+    val resupestaReduce = arregloCupleanos
+            .reduce { acumulador, iteracion ->
+            return@reduce acumulador +  iteracion
+        }
+
+    println(resupestaReduce)
+
+    //
+
+    val resupestaFold = arregloCupleanos
+            .fold (100,
+                { acumulador, iteracion ->
+                    return@fold acumulador +  iteracion
+                }
+            )
+
+    println(resupestaFold)
+
+    
 }//parámetros nombrados, en el orden que deseamos
 fun calcularSueldo(
         sueldo: Double, //requeridos
