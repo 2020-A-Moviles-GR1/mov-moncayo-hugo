@@ -206,6 +206,13 @@ fun main(args: Array<String>) {
     val nuevoNumeroTres = SumarDosNumerosDos(1,null)
     val nuevoNumeroCuatro = SumarDosNumerosDos(null,null)
 
+    println(SumarDosNumerosDos.arregloNumero)
+    SumarDosNumerosDos.agregarNumero(1)
+    println(SumarDosNumerosDos.arregloNumero)
+    SumarDosNumerosDos.eliminarNumero(0)
+    println(SumarDosNumerosDos.arregloNumero)
+
+
 }//parámetros nombrados, en el orden que deseamos
 fun calcularSueldo(
         sueldo: Double, //requeridos
@@ -286,6 +293,9 @@ class SumarDosNumerosDos(
         print("Hola 3")
     }
 
+    //objetos que no se pueden instanciar varias veces.
+    //solo se incia una ves una parte de código,
+    //utilizamos companion para crear los singleton
     companion object{
         val arregloNumero = arrayListOf(1,2,3,4)
         fun agregarNumero(nuevoNumero:Int ){
@@ -296,4 +306,10 @@ class SumarDosNumerosDos(
         }
     }
 
+}
+
+class BaseDeDatos {
+    companion object {
+        val datos = arrayListOf<Int>()
+    }
 }
