@@ -201,7 +201,31 @@ fun main(args: Array<String>) {
             )
     println(vidaactual)
 
+    val nuevoNumeroUno = SumarDosNumerosDos(1,1)
+    val nuevoNumeroDos = SumarDosNumerosDos(null,1)
+    val nuevoNumeroTres = SumarDosNumerosDos(1,null)
+    val nuevoNumeroCuatro = SumarDosNumerosDos(null,null)
+
+    println(SumarDosNumerosDos.arregloNumero)
+    SumarDosNumerosDos.agregarNumero(1)
+    println(SumarDosNumerosDos.arregloNumero)
+    SumarDosNumerosDos.eliminarNumero(0)
+    println(SumarDosNumerosDos.arregloNumero)
+
+    var nombre: String? = null
+    nombre = "Adrian"
+    imprimirNombre(nombre)
+//    if(nombre != null){
+//        println(nombre.length)
+//    }
+
 }//parámetros nombrados, en el orden que deseamos
+
+fun imprimirNombre(nombre:String?){
+    println(nombre?.length)
+    //elvis operator sirve para hacer null safe calls
+
+}
 fun calcularSueldo(
         sueldo: Double, //requeridos
         tasa: Double = 12.00, // por defecto
@@ -223,21 +247,81 @@ fun imprimirMensaje():Unit{ //Unit = Void, también no se debe especificar nada
 //Clases abstractas
 //no se necesita poner new para instancias una clase
 abstract class Numeros ( //variable nuevos numeros = Numeros
-        val numerUno:Int,
-        val numeroDos:Int
+        var numeroUno:Int,
+        var numeroDos:Int
 ){
 }
 
 //heredar de una clase a otra
 
-class Suma (
-    private val uno:Int,
-    private val dos:Int
-):Numeros(uno,dos){
-     fun sumar():Int
-    {
-        return this.numerUno +this.numeroDos
+class Suma(
+        uno: Int, // Parametro
+        dos: Int // Parametro
+) : Numeros(uno, dos) {
+    fun sumar(): Int {
+        // this.uno o this.dos NO ESTAN DISPONIBLES
+        return this.numeroUno + this.numeroDos
     }
 }
 
+class SumaDos(
+        uno: Int, // Propiedades
+        dos: Int // Propiedades
+) : Numeros(uno, dos) {
 
+    fun sumar(): Int {
+        return this.numeroUno + this.numeroDos
+    }
+}
+
+class SumarDosNumerosDos(
+        uno: Int,
+        dos: Int
+) : Numeros(uno, dos) {
+
+    init {
+        println("Hola INIT")
+    }
+
+    constructor(uno: Int?, dos: Int) : this(
+            if (uno == null) 0 else uno,
+            dos
+    ) {
+        print("Hola 1")
+    }
+
+    constructor(uno: Int, dos: Int?) : this(
+            uno,
+            if (dos == null) 0 else dos
+    ) {
+
+        print("Hola 2")
+    }
+
+    constructor(uno: Int?, dos: Int?) : this(
+            if (uno == null) 0 else uno,
+            if (dos == null) 0 else dos
+    ) {
+        print("Hola 3")
+    }
+
+    //objetos que no se pueden instanciar varias veces.
+    //solo se incia una ves una parte de código,
+    //utilizamos companion para crear los singleton
+    companion object{
+        val arregloNumero = arrayListOf(1,2,3,4)
+        fun agregarNumero(nuevoNumero:Int ){
+            this.arregloNumero.add(nuevoNumero)
+        }
+        fun eliminarNumero(posicionNumero:Int){
+            this.arregloNumero.removeAt(posicionNumero)
+        }
+    }
+
+}
+
+class BaseDeDatos {
+    companion object {
+        val datos = arrayListOf<Int>()
+    }
+}
