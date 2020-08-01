@@ -1,4 +1,5 @@
 import java.util.*
+import java.util.function.Consumer
 
 fun main(args: Array<String>) {
     print("Hola")
@@ -52,6 +53,36 @@ fun main(args: Array<String>) {
             tasa=16.00,
             sueldo = 800.00,
             calculoEspecial = 12)
+
+    val arregloConstante: Array<Int> = arrayOf(1,2,3) //arreglos contantes, no se pueden anadir elementos
+    val arregloCupleanos: ArrayList<Int> = arrayListOf(30, 31, 22, 23, 20) // puedo anadir o eliminar elmentos
+
+    print(arregloCupleanos)
+    arregloCupleanos.add(24)
+    print(arregloCupleanos)
+    arregloCupleanos.remove(30)
+    print(arregloCupleanos)
+
+    arregloCupleanos
+            .forEach {
+                println("Valor de la iteracion " + it)
+            }
+    arregloCupleanos
+            .forEach { valorIteracion: Int ->
+                println("Valor de la iteracion " + valorIteracion)
+            }
+    arregloCupleanos
+            .forEach (
+                { valorIteracion: Int ->
+                    println("Valor de la iteracion " + valorIteracion)
+                }
+            )
+
+    arregloConstante
+            .forEachIndexed { index: Int, it: Int ->
+                println("Valor de la iteracion " + it)
+            }
+
 }//parámetros nombrados, en el orden que deseamos
 fun calcularSueldo(
         sueldo: Double, //requeridos
@@ -71,6 +102,7 @@ fun imprimirMensaje():Unit{ //Unit = Void, también no se debe especificar nada
 
 
 //como incializar variable
+
 
 
 
