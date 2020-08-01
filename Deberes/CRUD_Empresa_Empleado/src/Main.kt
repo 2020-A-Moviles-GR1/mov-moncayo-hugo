@@ -1,3 +1,5 @@
+import java.io.File
+import kotlin.collections.ArrayList
 
 fun main(args:Array<String>) {
 
@@ -37,6 +39,22 @@ class Empleado(
                 "edadEmpleado=$edadEmpleado, " +
                 "Estado Empleado=$estadoEmpleado, " +
                 "Departamento='$departamentoEmpleado')"
+    }
+}
+
+fun leerEmpresas(empresas: ArrayList<Empresas>) {
+
+    File("Empresas.txt").forEachLine {
+        var a = it.split("|")
+        empresas.add(Empresas(a[0],a[1],a[2].toInt(),a[3].toBoolean(),a[4].toFloat()))
+
+    }
+}
+
+fun leerEmpleados(empleados: ArrayList<Empleado>) {
+    File("Empleados.txt").forEachLine{
+        var a = it.split("|")
+        empleados.add(Empleado(a[0],a[1].toFloat(),a[2].toInt(),a[3].toBoolean(),a[4]))
     }
 }
 
@@ -120,7 +138,7 @@ fun menuEmpresa(empresas: ArrayList<Empresas>, empleados: ArrayList<Empleado>): 
 fun crearEmpresa(empresas : ArrayList<Empresas>){
     print("Ingrese nombre de la Empresa: ")
     val nombre = readLine().toString()
-    print("Ingrese el salario del Empleado: ")
+    print("Ingrese dirección de la Empresa: ")
     val direccion = readLine().toString()
     print("Ingrese teléfono de la Empresa: ")
     val telefono = readLine().toString().toInt()
@@ -129,6 +147,21 @@ fun crearEmpresa(empresas : ArrayList<Empresas>){
     print("Ingrese el Capital de la Empresa: ")
     val capital = readLine().toString().toFloat()
     empresas.add( Empresas(nombre,direccion,telefono,estado,capital))
+    guadarEmpresaArchivo(empresas)
+}
+fun guadarEmpresaArchivo(empresas: ArrayList<Empresas>){
+    var texto:String=""
+    for (
+        i in empresas
+        ) {
+        texto += i.nombreEmpresa+"|" +
+                ""+i.direccionEmpresa+"|" +
+                ""+i.telefonEmpresa+"|" +
+                ""+i.estadoEmpresa+"|" +
+                ""+i.capitalEmpresa+"|" +
+                ""+"\n"
+    }
+    File("Empresas.txt").appendText(texto)
 }
 fun mostrarEmpresa(){
 
@@ -181,12 +214,27 @@ fun crearEmpleado(empleados: ArrayList<Empleado>){
     val salario = readLine().toString().toFloat()
     print("Ingrese Edad del Empleado: ")
     val edad = readLine().toString().toInt()
-    print("El empleado está en nomina? (true o false) ")
+    print("El empleado está en nomina (true o false)? ")
     val estado = readLine()!!.toBoolean()
     print("Ingrese Departamento del Empleado: ")
     val departamento = readLine().toString()
-
     empleados.add( Empleado(nombre,salario,edad,estado,departamento))
+    guadarEmpleadoArchivo(empleados)
+
+}
+fun guadarEmpleadoArchivo(empleados: ArrayList<Empleado>){
+    var texto:String=""
+    for (
+        i in empleados
+        ) {
+        texto += i.nombresEmpleado+"|" +
+                ""+i.salarioEmpleado+"|" +
+                ""+i.edadEmpleado+"|" +
+                ""+i.estadoEmpleado+"|" +
+                ""+i.departamentoEmpleado+"|" +
+                ""+"\n"
+    }
+    File("Empleados.txt").appendText(texto)
 }
 fun mostrarEmpleado(){
 
