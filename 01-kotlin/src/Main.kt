@@ -201,6 +201,11 @@ fun main(args: Array<String>) {
             )
     println(vidaactual)
 
+    val nuevoNumeroUno = SumarDosNumerosDos(1,1)
+    val nuevoNumeroDos = SumarDosNumerosDos(null,1)
+    val nuevoNumeroTres = SumarDosNumerosDos(1,null)
+    val nuevoNumeroCuatro = SumarDosNumerosDos(null,null)
+
 }//parámetros nombrados, en el orden que deseamos
 fun calcularSueldo(
         sueldo: Double, //requeridos
@@ -223,21 +228,64 @@ fun imprimirMensaje():Unit{ //Unit = Void, también no se debe especificar nada
 //Clases abstractas
 //no se necesita poner new para instancias una clase
 abstract class Numeros ( //variable nuevos numeros = Numeros
-        val numerUno:Int,
-        val numeroDos:Int
+        var numeroUno:Int,
+        var numeroDos:Int
 ){
 }
 
 //heredar de una clase a otra
 
-class Suma (
-    private val uno:Int,
-    private val dos:Int
-):Numeros(uno,dos){
-     fun sumar():Int
-    {
-        return this.numerUno +this.numeroDos
+class Suma(
+        uno: Int, // Parametro
+        dos: Int // Parametro
+) : Numeros(uno, dos) {
+    fun sumar(): Int {
+        // this.uno o this.dos NO ESTAN DISPONIBLES
+        return this.numeroUno + this.numeroDos
     }
 }
 
+class SumaDos(
+        uno: Int, // Propiedades
+        dos: Int // Propiedades
+) : Numeros(uno, dos) {
 
+    fun sumar(): Int {
+        return this.numeroUno + this.numeroDos
+    }
+}
+
+class SumarDosNumerosDos(
+        uno: Int,
+        dos: Int
+) : Numeros(uno, dos) {
+
+    init {
+        println("Hola INIT")
+    }
+
+    constructor(uno: Int?, dos: Int) : this(
+            if (uno == null) 0 else uno,
+            dos
+    ) {
+        print("Hola 1")
+    }
+
+    constructor(uno: Int, dos: Int?) : this(
+            uno,
+            if (dos == null) 0 else dos
+    ) {
+
+        print("Hola 2")
+    }
+
+    constructor(uno: Int?, dos: Int?) : this(
+            if (uno == null) 0 else uno,
+            if (dos == null) 0 else dos
+    ) {
+        print("Hola 3")
+    }
+
+    
+
+}
