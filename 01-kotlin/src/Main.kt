@@ -81,7 +81,47 @@ fun main(args: Array<String>) {
     arregloConstante
             .forEachIndexed { index: Int, it: Int ->
                 println("Valor de la iteracion " + it)
+
+
             }
+
+    val respuestaForeach = arregloCupleanos
+            .forEach { valorIteracion: Int ->
+                println("Valor de la iteracion " + valorIteracion)
+            }
+
+    println(respuestaForeach) // devuelve Unit
+
+    // operadores están en todos los lenguajes, nos ayudan a resolver cualquier problema
+    // foreach no devuelve nada, es decir devuelve UNIT.
+
+    //queremos cambiar a todo el arreglo a negativo
+    arregloCupleanos
+            .forEach { valorIteracion: Int ->
+                println("Valor iteracion "+ valorIteracion)
+                println("Valor con -1 ${valorIteracion}*-1")
+            }
+
+//si deseamos cambiar los valores de los elementos no sirve forEach
+
+    //MAP -> MUTA EL ARREGLO O CAMBIA EL ARREGLO
+    //Enviemso el nuevo valor de la iteeracion
+    //nos devuelve un nuevo arreglo
+    val respuestaMap = arregloCupleanos
+            .map { iteracion: Int ->
+               iteracion * -1
+            }
+
+    val respuestaMapDos = arregloCupleanos
+            .map { iteracion: Int ->
+                val nuevoValor = iteracion * -1
+                val otroValor = nuevoValor * 2
+                return@map otroValor
+
+            }
+    println(respuestaMap)
+    println(respuestaMapDos)
+    println(arregloCupleanos)
 
 }//parámetros nombrados, en el orden que deseamos
 fun calcularSueldo(
