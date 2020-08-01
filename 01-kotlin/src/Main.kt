@@ -187,7 +187,20 @@ fun main(args: Array<String>) {
 
     println(resupestaFold)
 
-    
+    //reducir el dano en 20%
+    //18 <
+
+    val vidaactual = arregloCupleanos
+            .map { it * 0.8 } //(30, 31, 22, 23, 20) //(24, 24.8, 17.6, 18.4, 16)
+            .filter { it >18 } //(24, 24.8, 18.4)
+            .fold( 100.00,
+                    {
+                    acc, d ->
+                        acc -d
+                    }
+            )
+    println(vidaactual)
+
 }//parámetros nombrados, en el orden que deseamos
 fun calcularSueldo(
         sueldo: Double, //requeridos
