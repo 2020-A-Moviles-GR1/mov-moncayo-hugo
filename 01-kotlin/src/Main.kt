@@ -187,7 +187,20 @@ fun main(args: Array<String>) {
 
     println(resupestaFold)
 
-    
+    //reducir el dano en 20%
+    //18 <
+
+    val vidaactual = arregloCupleanos
+            .map { it * 0.8 } //(30, 31, 22, 23, 20) //(24, 24.8, 17.6, 18.4, 16)
+            .filter { it >18 } //(24, 24.8, 18.4)
+            .fold( 100.00,
+                    {
+                    acc, d ->
+                        acc -d
+                    }
+            )
+    println(vidaactual)
+
 }//parámetros nombrados, en el orden que deseamos
 fun calcularSueldo(
         sueldo: Double, //requeridos
@@ -207,7 +220,24 @@ fun imprimirMensaje():Unit{ //Unit = Void, también no se debe especificar nada
 
 
 //como incializar variable
+//Clases abstractas
+//no se necesita poner new para instancias una clase
+abstract class Numeros ( //variable nuevos numeros = Numeros
+        val numerUno:Int,
+        val numeroDos:Int
+){
+}
 
+//heredar de una clase a otra
 
+class Suma (
+    private val uno:Int,
+    private val dos:Int
+):Numeros(uno,dos){
+     fun sumar():Int
+    {
+        return this.numerUno +this.numeroDos
+    }
+}
 
 
