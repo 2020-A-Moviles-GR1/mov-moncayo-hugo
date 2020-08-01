@@ -127,8 +127,8 @@ fun menuEmpresa(empresas: ArrayList<Empresas>, empleados: ArrayList<Empleado>): 
     }
     when (opcion) {
         1 -> crearEmpresa(empresas)
-        2 -> mostrarEmpresa()
-        3 -> modificarEmpresa()
+        2 -> mostrarEmpresa(empresas)
+        3 -> modificarEmpresa(empresas)
         4 -> eliminarEmpresa()
         5 -> estado = false
     }
@@ -151,23 +151,44 @@ fun crearEmpresa(empresas : ArrayList<Empresas>){
 }
 fun guadarEmpresaArchivo(empresas: ArrayList<Empresas>){
     var texto:String=""
-    for (
-        i in empresas
-        ) {
-        texto += i.nombreEmpresa+"|" +
-                ""+i.direccionEmpresa+"|" +
-                ""+i.telefonEmpresa+"|" +
-                ""+i.estadoEmpresa+"|" +
-                ""+i.capitalEmpresa+"|" +
+
+    empresas.forEach {
+        texto += it.nombreEmpresa+"|" +
+                ""+it.direccionEmpresa+"|" +
+                ""+it.telefonEmpresa+"|" +
+                ""+it.estadoEmpresa+"|" +
+                ""+it.capitalEmpresa+"|" +
                 ""+"\n"
     }
+
     File("Empresas.txt").appendText(texto)
 }
-fun mostrarEmpresa(){
-
+fun mostrarEmpresa(empresas: ArrayList<Empresas>){
+    empresas.forEach {
+        println("-" + it)
+    }
 }
-fun modificarEmpresa(){
-
+fun modificarEmpresa(empresas: ArrayList<Empresas>){
+    print("¿Qué empresa desea modificar?: ")
+    val nombre = readLine().toString()
+    val empresaExiste = empresas
+        .removeIf {
+            iteracion : Empresas ->
+            iteracion.nombreEmpresa==nombre
+        }
+    if(empresaExiste){
+        print("Ingrese nueva dirección: ")
+        val nuevaDireccion = readLine().toString()
+        print("Ingrese nuevo teléfono: ")
+        val nuevoTelefono = readLine().toString().toInt()
+        print("¿La empresa continúa activa? true o false ")
+        val nuevoEstado = readLine()!!.toBoolean()
+        print("Ingrese el nuevo capital de la empresa:  ")
+        val nuevoCapital = readLine().toString().toFloat()
+        empresas.add( Empresas(nombre,nuevaDireccion,nuevoTelefono,nuevoEstado,nuevoCapital))
+    }else{
+        println("No existe esta Empresa")
+    }
 }
 fun eliminarEmpresa (){
 
@@ -200,7 +221,7 @@ fun menuEmpleado(empresas: ArrayList<Empresas>, empleados: ArrayList<Empleado>):
     }
     when (opcion) {
         1 -> crearEmpleado(empleados)
-        2 -> mostrarEmpleado()
+        2 -> mostrarEmpleado(empleados)
         3 -> modificarEmpleado()
         4 -> eliminarEmpleado()
         5 -> estado = false
@@ -224,20 +245,21 @@ fun crearEmpleado(empleados: ArrayList<Empleado>){
 }
 fun guadarEmpleadoArchivo(empleados: ArrayList<Empleado>){
     var texto:String=""
-    for (
-        i in empleados
-        ) {
-        texto += i.nombresEmpleado+"|" +
-                ""+i.salarioEmpleado+"|" +
-                ""+i.edadEmpleado+"|" +
-                ""+i.estadoEmpleado+"|" +
-                ""+i.departamentoEmpleado+"|" +
+    empleados.forEach {
+        texto += it.nombresEmpleado+"|" +
+                ""+it.salarioEmpleado+"|" +
+                ""+it.edadEmpleado+"|" +
+                ""+it.estadoEmpleado+"|" +
+                ""+it.departamentoEmpleado+"|" +
                 ""+"\n"
     }
+
     File("Empleados.txt").appendText(texto)
 }
-fun mostrarEmpleado(){
-
+fun mostrarEmpleado(empleados: ArrayList<Empleado>){
+    empleados.forEach {
+        println("-" + it)
+    }
 }
 fun modificarEmpleado(){
 
