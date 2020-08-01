@@ -212,8 +212,20 @@ fun main(args: Array<String>) {
     SumarDosNumerosDos.eliminarNumero(0)
     println(SumarDosNumerosDos.arregloNumero)
 
+    var nombre: String? = null
+    nombre = "Adrian"
+    imprimirNombre(nombre)
+//    if(nombre != null){
+//        println(nombre.length)
+//    }
 
 }//parámetros nombrados, en el orden que deseamos
+
+fun imprimirNombre(nombre:String?){
+    println(nombre?.length)
+    //elvis operator sirve para hacer null safe calls
+
+}
 fun calcularSueldo(
         sueldo: Double, //requeridos
         tasa: Double = 12.00, // por defecto
