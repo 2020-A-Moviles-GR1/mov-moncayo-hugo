@@ -3,5 +3,5 @@ Arkilit|6 de diciembre|2158067|false|0.0|
 Platitapiz|Shiriz|1656565|true|1300.0|
 CAM|Sosaya|2232411|false|0.0|
 Banco Pichincha|Amazonas|2999999|true|10000.0|
-Banco Pichincha|Amazonas|2999999|true|10000.0|
 Banco Amazonas|Amazonas|299929|false|0.0|
+uno|solanda|22134574|true|200.0|

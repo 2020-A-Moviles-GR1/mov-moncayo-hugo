@@ -5,6 +5,8 @@ fun main(args:Array<String>) {
 
     val empresas = ArrayList<Empresas>()
     val empleados = ArrayList<Empleado>()
+    leerEmpresas(empresas)
+    leerEmpleados(empleados)
     //println("prueba de correr main
     // como clase luego de configuracion")
     while (true)
@@ -31,14 +33,14 @@ class Empleado(
     var salarioEmpleado:Float,
     var edadEmpleado: Int,
     var estadoEmpleado:Boolean,
-    var departamentoEmpleado:String
+    var EmpresaEmpleado: String
 ){
     override fun toString(): String {
         return "Empleado (Nombre Empleado='$nombresEmpleado', " +
                 "Salario=$salarioEmpleado, " +
                 "edadEmpleado=$edadEmpleado, " +
                 "Estado Empleado=$estadoEmpleado, " +
-                "Departamento='$departamentoEmpleado')"
+                "Departamento='$EmpresaEmpleado')"
     }
 }
 
@@ -220,15 +222,23 @@ fun menuEmpleado(empresas: ArrayList<Empresas>, empleados: ArrayList<Empleado>):
         }
     }
     when (opcion) {
-        1 -> crearEmpleado(empleados)
+        1 -> crearEmpleado(empresas, empleados)
         2 -> mostrarEmpleado(empleados)
-        3 -> modificarEmpleado()
-        4 -> eliminarEmpleado()
+        3 -> modificarEmpleado(empresas, empleados)
+        4 -> eliminarEmpleado(empleados)
         5 -> estado = false
     }
     return estado
 }
-fun crearEmpleado(empleados: ArrayList<Empleado>){
+fun crearEmpleado(empresas: ArrayList<Empresas>, empleados: ArrayList<Empleado>){
+    print("Ingrese el nombre de la Empresa que pertece el Empleado: ")
+    var nombreEmpresa = readLine().toString()
+    var empresa = empresas.
+        find { it: Empresas ->
+            it.nombreEmpresa == nombreEmpresa
+        }
+    if (empresa != null) {
+
     print("Ingrese nombre del Empleado: ")
     val nombre = readLine().toString()
     print("Ingrese el Salario del Empleado: ")
@@ -239,8 +249,13 @@ fun crearEmpleado(empleados: ArrayList<Empleado>){
     val estado = readLine()!!.toBoolean()
     print("Ingrese Departamento del Empleado: ")
     val departamento = readLine().toString()
-    empleados.add( Empleado(nombre,salario,edad,estado,departamento))
+    empleados.add( Empleado(nombre,salario,edad,estado,nombreEmpresa))
     guadarEmpleadoArchivo(empleados)
+    }
+    else
+    {
+        println("No existe este entrenador")
+    }
 
 }
 fun guadarEmpleadoArchivo(empleados: ArrayList<Empleado>){
@@ -250,7 +265,7 @@ fun guadarEmpleadoArchivo(empleados: ArrayList<Empleado>){
                 ""+it.salarioEmpleado+"|" +
                 ""+it.edadEmpleado+"|" +
                 ""+it.estadoEmpleado+"|" +
-                ""+it.departamentoEmpleado+"|" +
+                ""+it.EmpresaEmpleado+"|" +
                 ""+"\n"
     }
 
@@ -261,9 +276,20 @@ fun mostrarEmpleado(empleados: ArrayList<Empleado>){
         println("-" + it)
     }
 }
-fun modificarEmpleado(){
+fun modificarEmpleado(empresas: ArrayList<Empresas>, empleados: ArrayList<Empleado>){
+    println("Ingrese el nombre del empleado a actualizar: ")
+    var nombre = readLine().toString()
+    var nombreEmpleado = empleados.removeIf { iteracion: Empleado ->
+        iteracion.nombresEmpleado == nombre
+    }
+    if (nombreEmpleado) {
+        crearEmpleado(empresas, empleados)
+    } else {
+        println ("No existe el pokemon")
+    }
 
 }
-fun eliminarEmpleado (){
+fun eliminarEmpleado (empleados: ArrayList<Empleado>){
+
 
 }
