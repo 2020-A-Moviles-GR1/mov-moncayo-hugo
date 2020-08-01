@@ -286,6 +286,14 @@ class SumarDosNumerosDos(
         print("Hola 3")
     }
 
-    
+    companion object{
+        val arregloNumero = arrayListOf(1,2,3,4)
+        fun agregarNumero(nuevoNumero:Int ){
+            this.arregloNumero.add(nuevoNumero)
+        }
+        fun eliminarNumero(posicionNumero:Int){
+            this.arregloNumero.removeAt(posicionNumero)
+        }
+    }
 
 }
