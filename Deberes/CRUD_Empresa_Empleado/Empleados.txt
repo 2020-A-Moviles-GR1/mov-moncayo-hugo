@@ -1,2 +1,10 @@
-Maritza Rodriguez|1200.0|29|true|Sistemas|
-David Moncayo|1200.0|31|false|I|
+Helena Moncayo|800.7|7|true|Escollanos|
+Helena Moncayo|800.7|7|true|Escollanos|
+Maritza Rodriguez|1000.0|29|true|Escollanos|
+Maritza Rodriguez|1000.0|29|true|Escollanos|
+Helena Moncayo|800.0|8|true|Escollanos|
+Viviana Aguirre|1000.0|45|true|Arkilit|
+Viviana Aguirre|1000.0|45|true|Arkilit|
+Carlos Urgiles|2000.0|50|true|Arkilit|
+Carlos Urgiles|2000.0|50|true|Arkilit|
+Viviana Aguirre|1200.0|40|true|Arkilit|

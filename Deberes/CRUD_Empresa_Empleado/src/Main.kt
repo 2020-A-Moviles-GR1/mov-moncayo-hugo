@@ -257,8 +257,6 @@ fun crearEmpleado(empresas: ArrayList<Empresas>, empleados: ArrayList<Empleado>)
     val edad = readLine().toString().toInt()
     print("El empleado está en nomina (true o false)? ")
     val estado = readLine()!!.toBoolean()
-    print("Ingrese Departamento del Empleado: ")
-    val departamento = readLine().toString()
     empleados.add( Empleado(nombre,salario,edad,estado,nombreEmpresa))
     guadarEmpleadoArchivo(empleados)
     }
