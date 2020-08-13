@@ -1,0 +1,5 @@
+{"$$indexCreated":{"fieldName":"id","unique":true,"sparse":false}}
+{"nombre":"david","createdAt":1597326877259,"updatedAt":1597326877259,"id":1,"_id":1}
+{"createdAt":1597326963289,"updatedAt":1597326963289,"id":2,"_id":2}
+{"createdAt":1597327332582,"updatedAt":1597327332582,"id":3,"_id":3}
+{"nombre":"emilia","apellido":"moncayo","createdAt":1597327379414,"updatedAt":1597327379414,"id":4,"_id":4}
